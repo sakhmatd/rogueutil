@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+test
+example-c
+
+# GNU Global and CTAGS
+GPATH
+GRTAGS
+GTAGS
+TAGS
