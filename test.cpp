@@ -70,6 +70,7 @@ int main() {
 	rogueutil::locate(16,6); std::cout << "(16,6)";
 	rogueutil::locate(4,3); std::cout << "(4,3)";
 	rogueutil::locate(8,8); std::cout << "(8,8)";
+	rogueutil::locate(-1,-10); std::cout << "(-1,-10)";
 	std::cout << std::endl << "You should see three coordinates in their specified locations." << std::endl;
 	waitkey;
 

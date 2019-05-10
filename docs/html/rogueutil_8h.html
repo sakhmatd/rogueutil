@@ -23,7 +23,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">rogueutil
    </div>
-   <div id="projectbrief">Cross-platform C/C++ library for creating text-based user interfaces.</div>
+   <div id="projectbrief">Cross-platform C/C++ utility for creating text-based user interfaces.</div>
   </td>
  </tr>
  </tbody>
@@ -72,7 +72,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Cross-platform C/C++ library for creating text-based user interfaces.  
+<p>Cross-platform C/C++ utility for creating text-based user interfaces.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
@@ -258,101 +258,101 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rogu
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:aed87a8cf392ca203376acb2ada57ef68"><td class="memItemLeft" align="right" valign="top"><a id="aed87a8cf392ca203376acb2ada57ef68"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_CLS</b> = &quot;\033[2J\033[3J&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_CLS</b> = &quot;\033[2J\033[3J&quot;</td></tr>
 <tr class="separator:aed87a8cf392ca203376acb2ada57ef68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60a966720ec8078b430ec56b2ed7d5f6"><td class="memItemLeft" align="right" valign="top"><a id="a60a966720ec8078b430ec56b2ed7d5f6"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_CONSOLE_TITLE_PRE</b> = &quot;\033]0;&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_CONSOLE_TITLE_PRE</b> = &quot;\033]0;&quot;</td></tr>
 <tr class="separator:a60a966720ec8078b430ec56b2ed7d5f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0adbe39265e7399be0bcfa15e670fb2"><td class="memItemLeft" align="right" valign="top"><a id="aa0adbe39265e7399be0bcfa15e670fb2"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_CONSOLE_TITLE_POST</b> = &quot;\007&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_CONSOLE_TITLE_POST</b> = &quot;\007&quot;</td></tr>
 <tr class="separator:aa0adbe39265e7399be0bcfa15e670fb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6397bf667d1c232231d6af80746a702a"><td class="memItemLeft" align="right" valign="top"><a id="a6397bf667d1c232231d6af80746a702a"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_ATTRIBUTE_RESET</b> = &quot;\033[0m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_ATTRIBUTE_RESET</b> = &quot;\033[0m&quot;</td></tr>
 <tr class="separator:a6397bf667d1c232231d6af80746a702a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0abd553613c9b738fad54091a0138c9"><td class="memItemLeft" align="right" valign="top"><a id="ac0abd553613c9b738fad54091a0138c9"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_CURSOR_HIDE</b> = &quot;\033[?25l&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_CURSOR_HIDE</b> = &quot;\033[?25l&quot;</td></tr>
 <tr class="separator:ac0abd553613c9b738fad54091a0138c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a54e01690274dc87d7bc4da6d9fed75"><td class="memItemLeft" align="right" valign="top"><a id="a8a54e01690274dc87d7bc4da6d9fed75"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_CURSOR_SHOW</b> = &quot;\033[?25h&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_CURSOR_SHOW</b> = &quot;\033[?25h&quot;</td></tr>
 <tr class="separator:a8a54e01690274dc87d7bc4da6d9fed75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c5323c34c98a8a340ded0e3845f9844"><td class="memItemLeft" align="right" valign="top"><a id="a4c5323c34c98a8a340ded0e3845f9844"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_CURSOR_HOME</b> = &quot;\033[H&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_CURSOR_HOME</b> = &quot;\033[H&quot;</td></tr>
 <tr class="separator:a4c5323c34c98a8a340ded0e3845f9844"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a184ccb5131e3af431f909aabc90bf4c2"><td class="memItemLeft" align="right" valign="top"><a id="a184ccb5131e3af431f909aabc90bf4c2"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_BLACK</b> = &quot;\033[22;30m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_BLACK</b> = &quot;\033[22;30m&quot;</td></tr>
 <tr class="separator:a184ccb5131e3af431f909aabc90bf4c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9a89a568ab2db41b3daa438aece82f3"><td class="memItemLeft" align="right" valign="top"><a id="aa9a89a568ab2db41b3daa438aece82f3"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_RED</b> = &quot;\033[22;31m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_RED</b> = &quot;\033[22;31m&quot;</td></tr>
 <tr class="separator:aa9a89a568ab2db41b3daa438aece82f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07d9e0f855c71eb5ad95344fb7805e2e"><td class="memItemLeft" align="right" valign="top"><a id="a07d9e0f855c71eb5ad95344fb7805e2e"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_GREEN</b> = &quot;\033[22;32m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_GREEN</b> = &quot;\033[22;32m&quot;</td></tr>
 <tr class="separator:a07d9e0f855c71eb5ad95344fb7805e2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3325fba6e260b99295ec440bbec049c9"><td class="memItemLeft" align="right" valign="top"><a id="a3325fba6e260b99295ec440bbec049c9"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_BROWN</b> = &quot;\033[22;33m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_BROWN</b> = &quot;\033[22;33m&quot;</td></tr>
 <tr class="separator:a3325fba6e260b99295ec440bbec049c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a190350ac0fecb75cb8b99b7101d74bd3"><td class="memItemLeft" align="right" valign="top"><a id="a190350ac0fecb75cb8b99b7101d74bd3"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_BLUE</b> = &quot;\033[22;34m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_BLUE</b> = &quot;\033[22;34m&quot;</td></tr>
 <tr class="separator:a190350ac0fecb75cb8b99b7101d74bd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87b0eed0e3acc4364035a0ad3df70494"><td class="memItemLeft" align="right" valign="top"><a id="a87b0eed0e3acc4364035a0ad3df70494"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_MAGENTA</b> = &quot;\033[22;35m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_MAGENTA</b> = &quot;\033[22;35m&quot;</td></tr>
 <tr class="separator:a87b0eed0e3acc4364035a0ad3df70494"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ce6cf28b93c46453fc958c894374fd9"><td class="memItemLeft" align="right" valign="top"><a id="a4ce6cf28b93c46453fc958c894374fd9"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_CYAN</b> = &quot;\033[22;36m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_CYAN</b> = &quot;\033[22;36m&quot;</td></tr>
 <tr class="separator:a4ce6cf28b93c46453fc958c894374fd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e661a7cbb43ea0154b134a73d7bbe71"><td class="memItemLeft" align="right" valign="top"><a id="a7e661a7cbb43ea0154b134a73d7bbe71"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_GREY</b> = &quot;\033[22;37m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_GREY</b> = &quot;\033[22;37m&quot;</td></tr>
 <tr class="separator:a7e661a7cbb43ea0154b134a73d7bbe71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e537e3bb2a952663932ebc66ab204b1"><td class="memItemLeft" align="right" valign="top"><a id="a3e537e3bb2a952663932ebc66ab204b1"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_DARKGREY</b> = &quot;\033[01;30m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_DARKGREY</b> = &quot;\033[01;30m&quot;</td></tr>
 <tr class="separator:a3e537e3bb2a952663932ebc66ab204b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afbcfeeb24492c5cc6a2f53d50d4729a0"><td class="memItemLeft" align="right" valign="top"><a id="afbcfeeb24492c5cc6a2f53d50d4729a0"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_LIGHTRED</b> = &quot;\033[01;31m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_LIGHTRED</b> = &quot;\033[01;31m&quot;</td></tr>
 <tr class="separator:afbcfeeb24492c5cc6a2f53d50d4729a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac69d49fcf39af5fbd47b39825e7d8b8d"><td class="memItemLeft" align="right" valign="top"><a id="ac69d49fcf39af5fbd47b39825e7d8b8d"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_LIGHTGREEN</b> = &quot;\033[01;32m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_LIGHTGREEN</b> = &quot;\033[01;32m&quot;</td></tr>
 <tr class="separator:ac69d49fcf39af5fbd47b39825e7d8b8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99c3569d6c8e5226b95c697c4ab17896"><td class="memItemLeft" align="right" valign="top"><a id="a99c3569d6c8e5226b95c697c4ab17896"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_YELLOW</b> = &quot;\033[01;33m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_YELLOW</b> = &quot;\033[01;33m&quot;</td></tr>
 <tr class="separator:a99c3569d6c8e5226b95c697c4ab17896"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8859fc00f150afec86d5b23ba97a3bbe"><td class="memItemLeft" align="right" valign="top"><a id="a8859fc00f150afec86d5b23ba97a3bbe"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_LIGHTBLUE</b> = &quot;\033[01;34m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_LIGHTBLUE</b> = &quot;\033[01;34m&quot;</td></tr>
 <tr class="separator:a8859fc00f150afec86d5b23ba97a3bbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac08e4bb4222934e07554170bbfc94318"><td class="memItemLeft" align="right" valign="top"><a id="ac08e4bb4222934e07554170bbfc94318"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_LIGHTMAGENTA</b> = &quot;\033[01;35m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_LIGHTMAGENTA</b> = &quot;\033[01;35m&quot;</td></tr>
 <tr class="separator:ac08e4bb4222934e07554170bbfc94318"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a352fa4f4194e130f538111b75d24d09c"><td class="memItemLeft" align="right" valign="top"><a id="a352fa4f4194e130f538111b75d24d09c"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_LIGHTCYAN</b> = &quot;\033[01;36m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_LIGHTCYAN</b> = &quot;\033[01;36m&quot;</td></tr>
 <tr class="separator:a352fa4f4194e130f538111b75d24d09c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea18a9375f4cfab779f43a5dd20d7a24"><td class="memItemLeft" align="right" valign="top"><a id="aea18a9375f4cfab779f43a5dd20d7a24"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_WHITE</b> = &quot;\033[01;37m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_WHITE</b> = &quot;\033[01;37m&quot;</td></tr>
 <tr class="separator:aea18a9375f4cfab779f43a5dd20d7a24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0147245b9ddbb4caffe86eeb29bbf4e8"><td class="memItemLeft" align="right" valign="top"><a id="a0147245b9ddbb4caffe86eeb29bbf4e8"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_BACKGROUND_BLACK</b> = &quot;\033[40m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_BACKGROUND_BLACK</b> = &quot;\033[40m&quot;</td></tr>
 <tr class="separator:a0147245b9ddbb4caffe86eeb29bbf4e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a417eb0e9b1c3b1808d28dd2c12d799ee"><td class="memItemLeft" align="right" valign="top"><a id="a417eb0e9b1c3b1808d28dd2c12d799ee"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_BACKGROUND_RED</b> = &quot;\033[41m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_BACKGROUND_RED</b> = &quot;\033[41m&quot;</td></tr>
 <tr class="separator:a417eb0e9b1c3b1808d28dd2c12d799ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a002863e0d36958453e724199eb3244bb"><td class="memItemLeft" align="right" valign="top"><a id="a002863e0d36958453e724199eb3244bb"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_BACKGROUND_GREEN</b> = &quot;\033[42m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_BACKGROUND_GREEN</b> = &quot;\033[42m&quot;</td></tr>
 <tr class="separator:a002863e0d36958453e724199eb3244bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60e457918301b2ab3e91ff438e999638"><td class="memItemLeft" align="right" valign="top"><a id="a60e457918301b2ab3e91ff438e999638"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_BACKGROUND_YELLOW</b> = &quot;\033[43m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_BACKGROUND_YELLOW</b> = &quot;\033[43m&quot;</td></tr>
 <tr class="separator:a60e457918301b2ab3e91ff438e999638"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1fa1b27e98af312abac0b62dbbc5968"><td class="memItemLeft" align="right" valign="top"><a id="ab1fa1b27e98af312abac0b62dbbc5968"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_BACKGROUND_BLUE</b> = &quot;\033[44m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_BACKGROUND_BLUE</b> = &quot;\033[44m&quot;</td></tr>
 <tr class="separator:ab1fa1b27e98af312abac0b62dbbc5968"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8dffb193535b6c7eee40ce0092aacf63"><td class="memItemLeft" align="right" valign="top"><a id="a8dffb193535b6c7eee40ce0092aacf63"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_BACKGROUND_MAGENTA</b> = &quot;\033[45m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_BACKGROUND_MAGENTA</b> = &quot;\033[45m&quot;</td></tr>
 <tr class="separator:a8dffb193535b6c7eee40ce0092aacf63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4198d42b86175cd88746079f48a647ce"><td class="memItemLeft" align="right" valign="top"><a id="a4198d42b86175cd88746079f48a647ce"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_BACKGROUND_CYAN</b> = &quot;\033[46m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_BACKGROUND_CYAN</b> = &quot;\033[46m&quot;</td></tr>
 <tr class="separator:a4198d42b86175cd88746079f48a647ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeacc183e10ad133c7f7d2d91398efa2c"><td class="memItemLeft" align="right" valign="top"><a id="aeacc183e10ad133c7f7d2d91398efa2c"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_BACKGROUND_WHITE</b> = &quot;\033[47m&quot;</td></tr>
+static const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ANSI_BACKGROUND_WHITE</b> = &quot;\033[47m&quot;</td></tr>
 <tr class="separator:aeacc183e10ad133c7f7d2d91398efa2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Cross-platform C/C++ library for creating text-based user interfaces. </p>
+<div class="textblock"><p>Cross-platform C/C++ utility for creating text-based user interfaces. </p>
 <h1><a class="anchor" id="LICENSE"></a>
 LICENSE</h1>
 <p>Copyright 2019 Sergei Akhmatdinov</p>

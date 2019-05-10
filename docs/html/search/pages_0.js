@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rlutil',['rlutil',['../md_README.html',1,'']]]
+  ['rogueutil',['Rogueutil',['../md_README.html',1,'']]]
 ];

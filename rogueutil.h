@@ -17,7 +17,7 @@
 
 /**
  * @file rogueutil.h
- * @brief Cross-platform C/C++ library for creating text-based user interfaces
+ * @brief Cross-platform C/C++ utility for creating text-based user interfaces
  *
  * @section Description
  * Rogueutil provides some useful functions for creating TUIs and console-based
@@ -27,7 +27,8 @@
  *
  */
 
-#pragma once
+#ifndef RUTIL_H
+#define RUTIL_H
 
 #ifdef _DOXYGEN_
 	/** @brief Define to use ANSI escape sequences instead of WinAPI on Windows */
@@ -38,7 +39,7 @@
 	* @details Defaults to std::string in C++ and char* in C.
 	*/
 	#define RUTIL_STRING char*
-#endif
+#endif /* _DOXYGEN */
 
 #ifdef __cplusplus
 	/* Common C++ headers */
@@ -54,24 +55,24 @@
         }
 #else
 	#include <stdio.h> /* for getch() / printf() */
-	#include <string.h> // for strlen()
+	#include <string.h> /* for strlen() */
 
-	void locate(int x, int y); // Forward declare for C to avoid warnings
+	void locate(int x, int y); /* Forward declare for C to avoid warnings */
 #endif
 
 #ifdef _WIN32
-	#include <windows.h>  // for WinAPI and Sleep()
-	#define _NO_OLDNAMES  // for MinGW compatibility
-	#include <conio.h>    // for getch() and kbhit()
+	#include <windows.h>  /* for WinAPI and Sleep() */
+	#define _NO_OLDNAMES  /* for MinGW compatibility */
+	#include <conio.h>    /* for getch() and kbhit() */
 	#define getch _getch
 	#define kbhit _kbhit
 #else
-	#include <termios.h> // for getch() and kbhit()
-	#include <unistd.h> // for getch() and kbhit()
-	#include <time.h>   // for nanosleep()
-	#include <sys/ioctl.h> // for getkey()
-	#include <sys/types.h> // for kbhit()
-	#include <sys/time.h> // for kbhit()
+	#include <termios.h> /* for getch() and kbhit() */
+	#include <unistd.h> /* for getch() and kbhit() */
+	#include <time.h>   /* for nanosleep() */
+	#include <sys/ioctl.h> /* for getkey() */
+	#include <sys/types.h> /* for kbhit() */
+	#include <sys/time.h> /* for kbhit() */
 #endif
 
 /* Functions covered by Window's conio.h */
@@ -85,7 +86,6 @@
 int
 getch(void)
 {
-	// Here be magic.
 	struct termios oldt, newt;
 	int ch;
 	tcgetattr(STDIN_FILENO, &oldt);
@@ -105,24 +105,23 @@ getch(void)
 int
 kbhit(void)
 {
-	// Here be dragons.
 	static struct termios oldt, newt;
 	int cnt = 0;
 	tcgetattr(STDIN_FILENO, &oldt);
 	newt = oldt;
 	newt.c_lflag    &= ~(ICANON | ECHO);
-	newt.c_iflag     = 0; // input mode
-	newt.c_oflag     = 0; // output mode
-	newt.c_cc[VMIN]  = 1; // minimum time to wait
-	newt.c_cc[VTIME] = 1; // minimum characters to wait for
+	newt.c_iflag     = 0; /* input mode */
+	newt.c_oflag     = 0; /* output mode */
+	newt.c_cc[VMIN]  = 1; /* minimum time to wait */
+	newt.c_cc[VTIME] = 1; /* minimum characters to wait for */
 	tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-	ioctl(0, FIONREAD, &cnt); // Read count
+	ioctl(0, FIONREAD, &cnt); /* Read count */
 	struct timeval tv;
 	tv.tv_sec  = 0;
 	tv.tv_usec = 100;
-	select(STDIN_FILENO+1, NULL, NULL, NULL, &tv); // A small time delay
+	select(STDIN_FILENO+1, NULL, NULL, NULL, &tv); /* A small time delay */
 	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-	return cnt; // Return number of characters
+	return cnt; /* Return number of characters */
 }
 
 /**
@@ -151,14 +150,14 @@ namespace rogueutil
 #ifdef __cplusplus
 	#ifndef RUTIL_STRING
 		typedef std::string RUTIL_STRING;
-	#endif // RUTIL_STRING
+	#endif /* RUTIL_STRING */
 
-#else // __cplusplus
+#else
 	#ifndef RUTIL_STRING
 		typedef const char* RUTIL_STRING;
-	#endif // RUTIL_STRING
+	#endif /* RUTIL_STRING */
 
-#endif // __cplusplus
+#endif /* __cplusplus */
 
 /**
  * @brief Provides easy color codes with similar numbers to QBasic
@@ -182,37 +181,38 @@ enum color_code {
 	WHITE
 };
 
-const RUTIL_STRING ANSI_CLS                = "\033[2J\033[3J";
-const RUTIL_STRING ANSI_CONSOLE_TITLE_PRE  = "\033]0;";
-const RUTIL_STRING ANSI_CONSOLE_TITLE_POST = "\007";
-const RUTIL_STRING ANSI_ATTRIBUTE_RESET    = "\033[0m";
-const RUTIL_STRING ANSI_CURSOR_HIDE        = "\033[?25l";
-const RUTIL_STRING ANSI_CURSOR_SHOW        = "\033[?25h";
-const RUTIL_STRING ANSI_CURSOR_HOME        = "\033[H";
-const RUTIL_STRING ANSI_BLACK              = "\033[22;30m";
-const RUTIL_STRING ANSI_RED                = "\033[22;31m";
-const RUTIL_STRING ANSI_GREEN              = "\033[22;32m";
-const RUTIL_STRING ANSI_BROWN              = "\033[22;33m";
-const RUTIL_STRING ANSI_BLUE               = "\033[22;34m";
-const RUTIL_STRING ANSI_MAGENTA            = "\033[22;35m";
-const RUTIL_STRING ANSI_CYAN               = "\033[22;36m";
-const RUTIL_STRING ANSI_GREY               = "\033[22;37m";
-const RUTIL_STRING ANSI_DARKGREY           = "\033[01;30m";
-const RUTIL_STRING ANSI_LIGHTRED           = "\033[01;31m";
-const RUTIL_STRING ANSI_LIGHTGREEN         = "\033[01;32m";
-const RUTIL_STRING ANSI_YELLOW             = "\033[01;33m";
-const RUTIL_STRING ANSI_LIGHTBLUE          = "\033[01;34m";
-const RUTIL_STRING ANSI_LIGHTMAGENTA       = "\033[01;35m";
-const RUTIL_STRING ANSI_LIGHTCYAN          = "\033[01;36m";
-const RUTIL_STRING ANSI_WHITE              = "\033[01;37m";
-const RUTIL_STRING ANSI_BACKGROUND_BLACK   = "\033[40m";
-const RUTIL_STRING ANSI_BACKGROUND_RED     = "\033[41m";
-const RUTIL_STRING ANSI_BACKGROUND_GREEN   = "\033[42m";
-const RUTIL_STRING ANSI_BACKGROUND_YELLOW  = "\033[43m";
-const RUTIL_STRING ANSI_BACKGROUND_BLUE    = "\033[44m";
-const RUTIL_STRING ANSI_BACKGROUND_MAGENTA = "\033[45m";
-const RUTIL_STRING ANSI_BACKGROUND_CYAN    = "\033[46m";
-const RUTIL_STRING ANSI_BACKGROUND_WHITE   = "\033[47m";
+/* Constant strings for ANSI colors ans seqiences */
+static const RUTIL_STRING ANSI_CLS                = "\033[2J\033[3J";
+static const RUTIL_STRING ANSI_CONSOLE_TITLE_PRE  = "\033]0;";
+static const RUTIL_STRING ANSI_CONSOLE_TITLE_POST = "\007";
+static const RUTIL_STRING ANSI_ATTRIBUTE_RESET    = "\033[0m";
+static const RUTIL_STRING ANSI_CURSOR_HIDE        = "\033[?25l";
+static const RUTIL_STRING ANSI_CURSOR_SHOW        = "\033[?25h";
+static const RUTIL_STRING ANSI_CURSOR_HOME        = "\033[H";
+static const RUTIL_STRING ANSI_BLACK              = "\033[22;30m";
+static const RUTIL_STRING ANSI_RED                = "\033[22;31m";
+static const RUTIL_STRING ANSI_GREEN              = "\033[22;32m";
+static const RUTIL_STRING ANSI_BROWN              = "\033[22;33m";
+static const RUTIL_STRING ANSI_BLUE               = "\033[22;34m";
+static const RUTIL_STRING ANSI_MAGENTA            = "\033[22;35m";
+static const RUTIL_STRING ANSI_CYAN               = "\033[22;36m";
+static const RUTIL_STRING ANSI_GREY               = "\033[22;37m";
+static const RUTIL_STRING ANSI_DARKGREY           = "\033[01;30m";
+static const RUTIL_STRING ANSI_LIGHTRED           = "\033[01;31m";
+static const RUTIL_STRING ANSI_LIGHTGREEN         = "\033[01;32m";
+static const RUTIL_STRING ANSI_YELLOW             = "\033[01;33m";
+static const RUTIL_STRING ANSI_LIGHTBLUE          = "\033[01;34m";
+static const RUTIL_STRING ANSI_LIGHTMAGENTA       = "\033[01;35m";
+static const RUTIL_STRING ANSI_LIGHTCYAN          = "\033[01;36m";
+static const RUTIL_STRING ANSI_WHITE              = "\033[01;37m";
+static const RUTIL_STRING ANSI_BACKGROUND_BLACK   = "\033[40m";
+static const RUTIL_STRING ANSI_BACKGROUND_RED     = "\033[41m";
+static const RUTIL_STRING ANSI_BACKGROUND_GREEN   = "\033[42m";
+static const RUTIL_STRING ANSI_BACKGROUND_YELLOW  = "\033[43m";
+static const RUTIL_STRING ANSI_BACKGROUND_BLUE    = "\033[44m";
+static const RUTIL_STRING ANSI_BACKGROUND_MAGENTA = "\033[45m";
+static const RUTIL_STRING ANSI_BACKGROUND_CYAN    = "\033[46m";
+static const RUTIL_STRING ANSI_BACKGROUND_WHITE   = "\033[47m";
 /* Remaining colors not supported as background colors */
 
 /**
@@ -284,7 +284,7 @@ int
 getkey(void)
 {
 #ifndef _WIN32
-	int cnt = kbhit(); // for ANSI escapes processing
+	int cnt = kbhit(); /* for ANSI escapes processing */
 #endif
 	int k = getch();
 	switch(k) {
@@ -312,7 +312,7 @@ getkey(void)
 		case 83:
 			return KEY_NUMDEL;
 		default:
-			return kk-59+KEY_F1; // Function keys
+			return kk-59+KEY_F1; /* Function keys */
 		}
 	}
 	case 224: {
@@ -339,7 +339,7 @@ getkey(void)
 		case 83:
 			return KEY_DELETE;
 		default:
-			return kk-123+KEY_F1; // Function keys
+			return kk-123+KEY_F1; /* Function keys */
 		}
 	}
 	case 13:
@@ -347,10 +347,10 @@ getkey(void)
 #ifdef _WIN32
 	case 27:
 		return KEY_ESCAPE;
-#else // _WIN32
-	case 155: // single-character CSI
+#else /* _WIN32 */
+	case 155: /* single-character CSI */
 	case 27: {
-		// Process ANSI escape sequences
+		/* Process ANSI escape sequences */
 		if (cnt >= 3 && getch() == '[') {
 			switch (k = getch()) {
 			case 'A':
@@ -366,7 +366,7 @@ getkey(void)
 			}
 		} else return KEY_ESCAPE;
 	}
-#endif // _WIN32
+#endif /* _WIN32 */
 	default:
 		return k;
 	}
@@ -396,13 +396,13 @@ getANSIColor(const int c)
 	case BLACK       :
 		return ANSI_BLACK;
 	case BLUE        :
-		return ANSI_BLUE; // non-ANSI
+		return ANSI_BLUE; /* non-ANSI */
 	case GREEN       :
 		return ANSI_GREEN;
 	case CYAN        :
-		return ANSI_CYAN; // non-ANSI
+		return ANSI_CYAN; /* non-ANSI */
 	case RED         :
-		return ANSI_RED; // non-ANSI
+		return ANSI_RED; /* non-ANSI */
 	case MAGENTA     :
 		return ANSI_MAGENTA;
 	case BROWN       :
@@ -412,17 +412,17 @@ getANSIColor(const int c)
 	case DARKGREY    :
 		return ANSI_DARKGREY;
 	case LIGHTBLUE   :
-		return ANSI_LIGHTBLUE; // non-ANSI
+		return ANSI_LIGHTBLUE; /* non-ANSI */
 	case LIGHTGREEN  :
 		return ANSI_LIGHTGREEN;
 	case LIGHTCYAN   :
-		return ANSI_LIGHTCYAN; // non-ANSI;
+		return ANSI_LIGHTCYAN; /* non-ANSI; */
 	case LIGHTRED    :
-		return ANSI_LIGHTRED; // non-ANSI;
+		return ANSI_LIGHTRED; /* non-ANSI; */
 	case LIGHTMAGENTA:
 		return ANSI_LIGHTMAGENTA;
 	case YELLOW      :
-		return ANSI_YELLOW; // non-ANSI
+		return ANSI_YELLOW; /* non-ANSI */
 	case WHITE       :
 		return ANSI_WHITE;
 	default:
@@ -508,7 +508,7 @@ int
 saveDefaultColor(void)
 {
 #if defined(_WIN32) && !defined(RUTIL_USE_ANSI)
-	static char initialized = 0; // bool
+	static char initialized = 0; /* bool */
 	static WORD attributes;
 
 	if (!initialized) {
@@ -546,7 +546,7 @@ void
 cls(void)
 {
 #if defined(_WIN32) && !defined(RUTIL_USE_ANSI)
-	// Based on https://msdn.microsoft.com/en-us/library/windows/desktop/ms682022%28v=vs.85%29.aspx
+	/* Based on https://msdn.microsoft.com/en-us/library/windows/desktop/ms682022%28v=vs.85%29.aspx */
 	const HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	const COORD coordScreen = {0, 0};
 	DWORD cCharsWritten;
@@ -567,28 +567,27 @@ cls(void)
 }
 
 /**
- * @brief Sets the cursor position to 1-based x,y.
+ * @brief Sets the cursor position to one defined by x and y.
  */
 void
 locate(int x, int y)
 {
 #if defined(_WIN32) && !defined(RUTIL_USE_ANSI)
 	COORD coord;
-	// TODO: clamping/assert for x/y <= 0?
 	coord.X = (SHORT)(x - 1);
-	coord.Y = (SHORT)(y - 1); // Windows uses 0-based coordinates
+	coord.Y = (SHORT)(y - 1); /* Windows uses 0-based coordinates */
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-#else // _WIN32 || USE_ANSI
+#else /* _WIN32 || USE_ANSI */
 #ifdef __cplusplus
         std::stringstream ss;
         ss << "\033[" << y << ";" << x << "H";
 	rutil_print(ss.str());
-#else // __cplusplus
+#else
 	char buf[32];
 	sprintf(buf, "\033[%d;%df", y, x);
 	rutil_print(buf);
-#endif // __cplusplus
-#endif // _WIN32 || USE_ANSI
+#endif /* __cplusplus */
+#endif /* _WIN32 || USE_ANSI */
 }
 
 /**
@@ -599,32 +598,43 @@ void
 setString(const RUTIL_STRING & str_)
 {
 	const char * const str = str_.data();
-	unsigned int len = str_.size();
-#else // __cplusplus
+	unsigned int len = static_cast<unsigned int>(str_.size());
+#else /* __cplusplus */
 void
 setString(RUTIL_STRING str)
 {
-	unsigned int len = strlen(str);
-#endif // __cplusplus
+	unsigned int len = (unsigned int)strlen(str);
+#endif /* __cplusplus */
 #if defined(_WIN32) && !defined(RUTIL_USE_ANSI)
 	HANDLE hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
 	DWORD numberOfCharsWritten;
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
 
 	GetConsoleScreenBufferInfo(hConsoleOutput, &csbi);
-	WriteConsoleOutputCharacter(hConsoleOutput, str, len, csbi.dwCursorPosition, &numberOfCharsWritten);
-#else // _WIN32 || USE_ANSI
+
+#ifdef UNICODE
+	WriteConsoleOutputCharacterA(hConsoleOutput, str,
+                                     len, csbi.dwCursorPosition,
+                                     &numberOfCharsWritten);
+#else
+	WriteConsoleOutputCharacter(hConsoleOutput, str,
+                                    len, csbi.dwCursorPosition,
+                                    &numberOfCharsWritten);
+#endif /* UNICODE */
+
+#else /* _WIN32 || USE_ANSI */
 	rutil_print(str);
 #ifdef __cplusplus
         std::stringstream ss;
         ss << "\033[" << len << 'D';
 	rutil_print(ss.str());
-#else // __cplusplus
-	char buf[3 + 20 + 1]; // 20 = max length of 64-bit unsigned int when printed as dec
+#else
+	char buf[3 + 20 + 1]; /* 20 = max length of 64-bit
+                                 * unsigned int when printed as dec */
 	sprintf(buf, "\033[%uD", len);
 	rutil_print(buf);
-#endif // __cplusplus
-#endif // _WIN32 || USE_ANSI
+#endif /* __cplusplus */
+#endif /* _WIN32 || USE_ANSI */
 }
 
 /**
@@ -648,9 +658,9 @@ void setCursorVisibility(char visible)
 	GetConsoleCursorInfo( hConsoleOutput, &structCursorInfo ); // Get current cursor size
 	structCursorInfo.bVisible = (visible ? TRUE : FALSE);
 	SetConsoleCursorInfo( hConsoleOutput, &structCursorInfo );
-#else // _WIN32 || USE_ANSI
+#else /* _WIN32 || USE_ANSI */
 	rutil_print((visible ? ANSI_CURSOR_SHOW : ANSI_CURSOR_HIDE));
-#endif // _WIN32 || USE_ANSI
+#endif /* _WIN32 || USE_ANSI */
 }
 
 /**
@@ -701,7 +711,6 @@ int trows(void)
 		return -1;
 	else
 		return csbi.srWindow.Bottom - csbi.srWindow.Top + 1; // Window height
-	// return csbi.dwSize.Y; // Buffer height
 #else
 #ifdef TIOCGSIZE
 	struct ttysize ts;
@@ -711,10 +720,10 @@ int trows(void)
 	struct winsize ts;
 	ioctl(STDIN_FILENO, TIOCGWINSZ, &ts);
 	return ts.ws_row;
-#else // TIOCGSIZE
+#else /* TIOCGSIZE */
 	return -1;
-#endif // TIOCGSIZE
-#endif // _WIN32
+#endif /* TIOCGSIZE */
+#endif /* _WIN32 */
 }
 
 /**
@@ -728,7 +737,6 @@ int tcols(void)
 		return -1;
 	else
 		return csbi.srWindow.Right - csbi.srWindow.Left + 1; // Window width
-	// return csbi.dwSize.X; // Buffer width
 #else
 #ifdef TIOCGSIZE
 	struct ttysize ts;
@@ -738,10 +746,10 @@ int tcols(void)
 	struct winsize ts;
 	ioctl(STDIN_FILENO, TIOCGWINSZ, &ts);
 	return ts.ws_col;
-#else // TIOCGSIZE
+#else /* TIOCGSIZE */
 	return -1;
-#endif // TIOCGSIZE
-#endif // _WIN32
+#endif /* TIOCGSIZE */
+#endif /* _WIN32 */
 }
 
 /**
@@ -762,7 +770,7 @@ void anykey(RUTIL_STRING msg)
 {
 	if (msg)
 		rutil_print(msg);
-#endif // __cplusplus
+#endif /* __cplusplus */
 	getch();
 }
 
@@ -774,16 +782,16 @@ void setConsoleTitle(RUTIL_STRING title)
 	const char * true_title =
 #ifdef __cplusplus
 	        title.c_str();
-#else // __cplusplus
+#else /* __cplusplus */
 	        title;
-#endif // __cplusplus
+#endif /* __cplusplus */
 #if defined(_WIN32) && !defined(RUTIL_USE_ANSI)
 	SetConsoleTitleA(true_title);
 #else
 	rutil_print(ANSI_CONSOLE_TITLE_PRE);
 	rutil_print(true_title);
 	rutil_print(ANSI_CONSOLE_TITLE_POST);
-#endif // defined(_WIN32) && !defined(RUTIL_USE_ANSI)
+#endif /* defined(_WIN32) && !defined(RUTIL_USE_ANSI) */
 }
 
 #ifdef __cplusplus
@@ -803,5 +811,6 @@ struct CursorHider {
 	}
 };
 
-} // namespace rogueutil
+} /* namespace rogueutil */
 #endif
+#endif /* RUTIL_H */

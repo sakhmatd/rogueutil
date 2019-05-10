@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['rlutil',['rlutil',['../md_README.html',1,'']]],
+  ['rogueutil',['Rogueutil',['../md_README.html',1,'']]],
   ['resetcolor',['resetColor',['../rogueutil_8h.html#af76a7b1c7368760dafd6ff48352c3544',1,'rogueutil.h']]],
   ['rogueutil_2eh',['rogueutil.h',['../rogueutil_8h.html',1,'']]],
   ['rutil_5fprint',['rutil_print',['../rogueutil_8h.html#a159c051c58e656e0d649300552648855',1,'rogueutil.h']]],
