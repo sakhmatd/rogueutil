@@ -124,6 +124,10 @@ kbhit(void)
 	return cnt; /* Return number of characters */
 }
 
+#endif /* _WIN32 */
+
+
+#ifndef gotoxy
 /**
  * @brief Sets the cursor to the specified x and y position.
  * @details Windows has this functionality in conio.h
@@ -135,9 +139,9 @@ gotoxy(int x, int y)
 #ifdef __cplusplus
 	rogueutil::
 #endif
-	locate(x,y);
+                locate(x,y);
 }
-#endif
+#endif /* gotoxy */
 
 #ifdef __cplusplus
 /**
@@ -145,7 +149,7 @@ gotoxy(int x, int y)
  */
 namespace rogueutil
 {
-#endif
+#endif /* __cplusplus */
 
 #ifdef __cplusplus
 	#ifndef RUTIL_STRING
@@ -162,7 +166,7 @@ namespace rogueutil
 /**
  * @brief Provides easy color codes with similar numbers to QBasic
  */
-enum color_code {
+typedef enum color_code {
 	BLACK,
 	BLUE,
 	GREEN,
@@ -179,7 +183,7 @@ enum color_code {
 	LIGHTMAGENTA,
 	YELLOW,
 	WHITE
-};
+} color_code;
 
 /* Constant strings for ANSI colors ans seqiences */
 static const RUTIL_STRING ANSI_CLS                = "\033[2J\033[3J";
@@ -218,7 +222,7 @@ static const RUTIL_STRING ANSI_BACKGROUND_WHITE   = "\033[47m";
 /**
  * @brief Provides keycodes for special keys
  */
-enum key_code {
+typedef enum key_code {
 	KEY_ESCAPE  = 0,
 	KEY_ENTER   = 1,
 	KEY_SPACE   = 32,
@@ -259,11 +263,13 @@ enum key_code {
 	KEY_NUMPAD7 = 133,
 	KEY_NUMPAD8 = 134,
 	KEY_NUMPAD9 = 135,
-};
+} key_code;
 
 /**
  * @brief Printing wrapper independent of C/C++
  * @param st String to print
+ * @see colorPrint()
+ * @see colorPrintBG()
  */
 static void
 rutil_print(RUTIL_STRING st)
@@ -362,7 +368,7 @@ getkey(void)
 			case 'D':
 				return KEY_LEFT;
 			default:
-				return -1;
+				return KEY_ESCAPE;
 			}
 		} else return KEY_ESCAPE;
 	}
@@ -436,7 +442,7 @@ getANSIColor(const int c)
  * @see color_code
  */
 RUTIL_STRING
-getANSIBackgroundColor(const int c)
+getANSIBgColor(const int c)
 {
 	switch (c) {
 	case BLACK  :
@@ -496,7 +502,7 @@ setBackgroundColor(int c)
 
 	SetConsoleTextAttribute(hConsole, (csbi.wAttributes & 0xFF0F) | (((WORD)c) << 4)); // Background colors take up the second-least significant byte
 #else
-	rutil_print(getANSIBackgroundColor(c));
+	rutil_print(getANSIBgColor(c));
 #endif
 }
 
@@ -640,7 +646,8 @@ setString(RUTIL_STRING str)
 /**
  * @brief Sets the character at the cursor without advancing the cursor
  */
-void setChar(char ch)
+void
+setChar(char ch)
 {
 	const char buf[] = {ch, 0};
 	setString(buf);
@@ -650,7 +657,8 @@ void setChar(char ch)
  * @brief Shows/hides the cursor.
  * @param visible 0 to hide the cursor, anything else to show the cursor
  */
-void setCursorVisibility(char visible)
+void
+setCursorVisibility(char visible)
 {
 #if defined(_WIN32) && !defined(RUTIL_USE_ANSI)
 	HANDLE hConsoleOutput = GetStdHandle( STD_OUTPUT_HANDLE );
@@ -667,7 +675,8 @@ void setCursorVisibility(char visible)
  * @brief Hides the cursor
  * @see setCursorVisibility()
  */
-void hidecursor(void)
+void
+hidecursor(void)
 {
 	setCursorVisibility(0);
 }
@@ -676,7 +685,8 @@ void hidecursor(void)
  * @brief Shows the cursor
  * @see setCursorVisibility()
  */
-void showcursor(void)
+void
+showcursor(void)
 {
 	setCursorVisibility(1);
 }
@@ -684,7 +694,8 @@ void showcursor(void)
 /**
  * @brief Pauses the program for a given number of milliseconds
  */
-void msleep(unsigned int ms)
+void
+msleep(unsigned int ms)
 {
 #ifdef _WIN32
 	Sleep(ms);
@@ -697,13 +708,14 @@ void msleep(unsigned int ms)
 	if(nanosleep(&ts, NULL) < 0) {
 		perror("sleep failed");
 	}
-#endif
+#endif /* _WIN32 */
 }
 
 /**
  * @brief Returns the number of rows in the terminal window or -1 on error.
  */
-int trows(void)
+int
+trows(void)
 {
 #ifdef _WIN32
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
@@ -729,7 +741,8 @@ int trows(void)
 /**
  * @brief Returns the number of columns in the terminal or -1 on error.
  */
-int tcols(void)
+int
+tcols(void)
 {
 #ifdef _WIN32
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
@@ -757,7 +770,8 @@ int tcols(void)
  * @param msg The message to display or NULL. Optional in C++.
  */
 #ifdef __cplusplus
-void anykey()
+void
+anykey()
 {
 	getch();
 }
@@ -766,7 +780,8 @@ template <class T> void anykey(const T& msg)
 {
 	rutil_print(msg);
 #else
-void anykey(RUTIL_STRING msg)
+void
+anykey(RUTIL_STRING msg)
 {
 	if (msg)
 		rutil_print(msg);
@@ -777,7 +792,8 @@ void anykey(RUTIL_STRING msg)
 /**
  * @brief Sets the console title given a string.
  */
-void setConsoleTitle(RUTIL_STRING title)
+void
+setConsoleTitle(RUTIL_STRING title)
 {
 	const char * true_title =
 #ifdef __cplusplus
@@ -793,6 +809,35 @@ void setConsoleTitle(RUTIL_STRING title)
 	rutil_print(ANSI_CONSOLE_TITLE_POST);
 #endif /* defined(_WIN32) && !defined(RUTIL_USE_ANSI) */
 }
+
+/**
+ * @brief Prints a message in a given foreground color.
+ * @param msg Message to print.
+ * @param color Foreground color to be used
+ * @see color_code
+ */
+void
+colorPrint(RUTIL_STRING msg, color_code color)
+{
+        setColor(color);
+        rutil_print(msg);
+}
+
+/**
+ * @brief Prints a message given foreground and background colors.
+ * @param msg Message to print.
+ * @param color Foreground color to be used
+ * @param bgcolor Background color to be used
+ * @see color_code
+ */
+void
+colorPrintBG(RUTIL_STRING msg, color_code bgcolor, color_code color)
+{
+        setColor(color);
+        setBackgroundColor(bgcolor);
+        rutil_print(msg);
+}
+
 
 #ifdef __cplusplus
 /**

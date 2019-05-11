@@ -1,7 +1,6 @@
 #include "rogueutil.h"
 #include <stdlib.h> // for srand() / rand()
 #include <stdio.h>
-#include "math.h"
 
 #ifndef min
 #define min(a,b) (((a)<(b))?(a):(b))
@@ -15,6 +14,9 @@
 #define TORCH (1 << 4)
 
 #define MAPSIZE 15
+
+void gen(int seed);
+void draw(void);
 
 /// Globals
 int x, y;
@@ -42,7 +44,7 @@ void gen(int seed) {
 }
 
 /// Draws the screen
-void draw() {
+void draw(void) {
 	cls();
 	locate(1, MAPSIZE + 1);
 	setColor(YELLOW);
@@ -74,7 +76,7 @@ void draw() {
 }
 
 /// Main loop and input handling
-int main() {
+int main(void) {
 	hidecursor();
 	saveDefaultColor();
 	gen(level);
@@ -102,11 +104,14 @@ int main() {
 			// Drawing
 			draw();
 			// Die
-			if (--torch <= 0) break;
+			if (--torch <= 0)
+                                break;
 		}
 	}
 
 	cls();
+        setColor(RED);
+        anykey("You have been eaten by a grue.");
 	resetColor();
 	showcursor();
 
