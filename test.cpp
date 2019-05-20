@@ -7,6 +7,7 @@
  *
  * About: Copyright
  * (C) 2010 Tapio Vierros
+ * (C) 2019 Sergei Akhmatdinov
  *
  * About: Licensing
  * See <License>
@@ -27,7 +28,7 @@ char chargen() {
 int main() {
 	rogueutil::saveDefaultColor();
 
-	std::cout << "Welcome to rlutil test program." << std::endl;
+	std::cout << "Welcome to the Rogueutil test program." << std::endl;
 	waitkey;
 
 	std::cout << "\nTest 1: Colors" << std::endl;
@@ -199,7 +200,12 @@ int main() {
 		rogueutil::setConsoleTitle(title);
 		std::cout << "Your terminal window should now be named \"" << title << "\"." << std::endl;
 	}
-	waitkey;
+        waitkey;
+
+        std::cout << "Test 15: Getting the username." << std::endl;
+        std::cout << rogueutil::getUsername() << std::endl;
+        std::cout << "You should see your username above." << std::endl;
+        waitkey;
 
 	std::cout << "All tests done. Bye!" << std::endl;
 	return 0;

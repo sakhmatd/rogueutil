@@ -64,6 +64,7 @@
 	#include <windows.h>  /* for WinAPI and Sleep() */
 	#define _NO_OLDNAMES  /* for MinGW compatibility */
 	#include <conio.h>    /* for getch() and kbhit() */
+	#include <lmcons.h>   /* for getUsername()      */
 	#define getch _getch
 	#define kbhit _kbhit
 #else
@@ -838,6 +839,21 @@ colorPrintBG(RUTIL_STRING msg, color_code bgcolor, color_code color)
         rutil_print(msg);
 }
 
+/**
+ * @brief Returns the username of the user running the program.
+ */
+RUTIL_STRING
+getUsername(void)
+{
+        RUTIL_STRING ret;
+#ifdef _WIN32
+        GetUserNameA(ret, UNLEN + 1);
+        return ret;
+#else /* _WIN32 */
+        ret = getlogin();
+        return ret;
+#endif
+}
 
 #ifdef __cplusplus
 /**
