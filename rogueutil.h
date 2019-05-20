@@ -842,16 +842,17 @@ colorPrintBG(RUTIL_STRING msg, color_code bgcolor, color_code color)
 /**
  * @brief Returns the username of the user running the program.
  */
-RUTIL_STRING
+char*
 getUsername(void)
 {
-        RUTIL_STRING ret;
 #ifdef _WIN32
-        GetUserNameA(ret, UNLEN + 1);
-        return ret;
+        char* ret;
+        DWORD len = UNLEN + 1;
+        if (GetUserNameA(ret, &len))
+                return ret;
+        return NULL;
 #else /* _WIN32 */
-        ret = getlogin();
-        return ret;
+        return getlogin();
 #endif
 }
 
