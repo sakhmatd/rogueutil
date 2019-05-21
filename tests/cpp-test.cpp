@@ -13,7 +13,7 @@
  * See <License>
  */
 
-#include "rogueutil.h"
+#include "../rogueutil.h"
 #include <algorithm>
 #include <cstdlib>
 #include <cstdio>

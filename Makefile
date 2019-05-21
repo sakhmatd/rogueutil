@@ -3,11 +3,12 @@ CXXFLAGS=-g -O2 -Wall -Wextra
 
 all: test example-c
 
-test: rogueutil.h test.cpp
-	$(CXX) $(CXXFLAGS) -o test test.cpp
+test: rogueutil.h
+	$(CXX) $(CXXFLAGS) -o cpp-test tests/cpp-test.cpp
+	$(CC) $(CXXFLAGS) -o c-test tests/c-test.c
 
-example-c: rogueutil.h example.c
-	$(CC) $(CFLAGS) -o example-c example.c
+example-c: rogueutil.h
+	$(CC) $(CFLAGS) -o c-example examples/example.c
 
 .PHONY: clean
 

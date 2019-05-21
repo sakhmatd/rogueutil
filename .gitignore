@@ -30,7 +30,9 @@
 *.exe
 *.out
 *.app
-test
+c-test
+cpp-test
+c-example
 example-c
 
 # GNU Global and CTAGS

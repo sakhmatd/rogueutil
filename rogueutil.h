@@ -846,7 +846,8 @@ char*
 getUsername(void)
 {
 #ifdef _WIN32
-        char* ret;
+        /* TODO: Find a better way that doesn't use a static var. */
+        static char ret[UNLEN + 1];
         DWORD len = UNLEN + 1;
         if (GetUserNameA(ret, &len))
                 return ret;
@@ -854,6 +855,18 @@ getUsername(void)
 #else /* _WIN32 */
         return getlogin();
 #endif
+}
+
+/**
+ * @brief Print a message at a position given by x and y.
+ * @see locate()
+ * @see rutil_print()
+ */
+void
+printXY(int x, int y, RUTIL_STRING msg)
+{
+        locate(x, y);
+        rutil_print(msg);
 }
 
 #ifdef __cplusplus

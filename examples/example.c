@@ -1,4 +1,4 @@
-#include "rogueutil.h"
+#include "../rogueutil.h"
 #include <stdlib.h> // for srand() / rand()
 #include <stdio.h>
 
