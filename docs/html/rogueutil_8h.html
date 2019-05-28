@@ -269,9 +269,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rogu
 <tr class="memitem:a3f12b9a0001f62eea0ed1ffcd246ef0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rogueutil_8h.html#a3f12b9a0001f62eea0ed1ffcd246ef0a">colorPrint</a> (char *msg, <a class="el" href="rogueutil_8h.html#aa107bc1c2d86eae3e234ca343d6bd856">color_code</a> color)</td></tr>
 <tr class="memdesc:a3f12b9a0001f62eea0ed1ffcd246ef0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a message in a given foreground color.  <a href="#a3f12b9a0001f62eea0ed1ffcd246ef0a">More...</a><br /></td></tr>
 <tr class="separator:a3f12b9a0001f62eea0ed1ffcd246ef0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5beafbea08596f3ee9d21f27f9e2fda5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rogueutil_8h.html#a5beafbea08596f3ee9d21f27f9e2fda5">colorBGPrint</a> (char *msg, <a class="el" href="rogueutil_8h.html#aa107bc1c2d86eae3e234ca343d6bd856">color_code</a> bgcolor, <a class="el" href="rogueutil_8h.html#aa107bc1c2d86eae3e234ca343d6bd856">color_code</a> color)</td></tr>
-<tr class="memdesc:a5beafbea08596f3ee9d21f27f9e2fda5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a message given foreground and background colors.  <a href="#a5beafbea08596f3ee9d21f27f9e2fda5">More...</a><br /></td></tr>
-<tr class="separator:a5beafbea08596f3ee9d21f27f9e2fda5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11755ee245770a05d3c6f2181834b274"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rogueutil_8h.html#a11755ee245770a05d3c6f2181834b274">colorPrintBG</a> (char *msg, <a class="el" href="rogueutil_8h.html#aa107bc1c2d86eae3e234ca343d6bd856">color_code</a> bgcolor, <a class="el" href="rogueutil_8h.html#aa107bc1c2d86eae3e234ca343d6bd856">color_code</a> color)</td></tr>
+<tr class="memdesc:a11755ee245770a05d3c6f2181834b274"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a message given foreground and background colors.  <a href="#a11755ee245770a05d3c6f2181834b274">More...</a><br /></td></tr>
+<tr class="separator:a11755ee245770a05d3c6f2181834b274"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ee33d2f27149c42bda62b33ecc1fed9"><td class="memItemLeft" align="right" valign="top"><a id="a4ee33d2f27149c42bda62b33ecc1fed9"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rogueutil_8h.html#a4ee33d2f27149c42bda62b33ecc1fed9">getUsername</a> (void)</td></tr>
+<tr class="memdesc:a4ee33d2f27149c42bda62b33ecc1fed9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the username of the user running the program. <br /></td></tr>
+<tr class="separator:a4ee33d2f27149c42bda62b33ecc1fed9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bf56aa4856f6f3ca02d79a075da792f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rogueutil_8h.html#a5bf56aa4856f6f3ca02d79a075da792f">printXY</a> (int x, int y, char *msg)</td></tr>
+<tr class="memdesc:a5bf56aa4856f6f3ca02d79a075da792f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print a message at a position given by x and y.  <a href="#a5bf56aa4856f6f3ca02d79a075da792f">More...</a><br /></td></tr>
+<tr class="separator:a5bf56aa4856f6f3ca02d79a075da792f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -425,51 +432,6 @@ Description</h1>
 
 </div>
 </div>
-<a id="a5beafbea08596f3ee9d21f27f9e2fda5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5beafbea08596f3ee9d21f27f9e2fda5">&#9670;&nbsp;</a></span>colorBGPrint()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void colorBGPrint </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>msg</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="rogueutil_8h.html#aa107bc1c2d86eae3e234ca343d6bd856">color_code</a>&#160;</td>
-          <td class="paramname"><em>bgcolor</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="rogueutil_8h.html#aa107bc1c2d86eae3e234ca343d6bd856">color_code</a>&#160;</td>
-          <td class="paramname"><em>color</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Prints a message given foreground and background colors. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">msg</td><td>Message to print. </td></tr>
-    <tr><td class="paramname">color</td><td>Foreground color to be used </td></tr>
-    <tr><td class="paramname">bgcolor</td><td>Background color to be used </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="rogueutil_8h.html#aa107bc1c2d86eae3e234ca343d6bd856" title="Provides easy color codes with similar numbers to QBasic.">color_code</a> </dd></dl>
-
-</div>
-</div>
 <a id="a3f12b9a0001f62eea0ed1ffcd246ef0a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3f12b9a0001f62eea0ed1ffcd246ef0a">&#9670;&nbsp;</a></span>colorPrint()</h2>
 
@@ -501,6 +463,51 @@ Description</h1>
   <table class="params">
     <tr><td class="paramname">msg</td><td>Message to print. </td></tr>
     <tr><td class="paramname">color</td><td>Foreground color to be used </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="rogueutil_8h.html#aa107bc1c2d86eae3e234ca343d6bd856" title="Provides easy color codes with similar numbers to QBasic.">color_code</a> </dd></dl>
+
+</div>
+</div>
+<a id="a11755ee245770a05d3c6f2181834b274"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11755ee245770a05d3c6f2181834b274">&#9670;&nbsp;</a></span>colorPrintBG()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void colorPrintBG </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="rogueutil_8h.html#aa107bc1c2d86eae3e234ca343d6bd856">color_code</a>&#160;</td>
+          <td class="paramname"><em>bgcolor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="rogueutil_8h.html#aa107bc1c2d86eae3e234ca343d6bd856">color_code</a>&#160;</td>
+          <td class="paramname"><em>color</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints a message given foreground and background colors. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>Message to print. </td></tr>
+    <tr><td class="paramname">color</td><td>Foreground color to be used </td></tr>
+    <tr><td class="paramname">bgcolor</td><td>Background color to be used </td></tr>
   </table>
   </dd>
 </dl>
@@ -699,6 +706,45 @@ Description</h1>
 
 </div>
 </div>
+<a id="a5bf56aa4856f6f3ca02d79a075da792f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bf56aa4856f6f3ca02d79a075da792f">&#9670;&nbsp;</a></span>printXY()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printXY </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>msg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Print a message at a position given by x and y. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="rogueutil_8h.html#ad083f147fbd29d97b5164995e4e21bfd" title="Sets the cursor position to one defined by x and y.">locate()</a> </dd>
+<dd>
+<a class="el" href="rogueutil_8h.html#a159c051c58e656e0d649300552648855" title="Printing wrapper independent of C/C++.">rutil_print()</a> </dd></dl>
+
+</div>
+</div>
 <a id="af76a7b1c7368760dafd6ff48352c3544"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af76a7b1c7368760dafd6ff48352c3544">&#9670;&nbsp;</a></span>resetColor()</h2>
 
@@ -757,7 +803,7 @@ Description</h1>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="rogueutil_8h.html#a3f12b9a0001f62eea0ed1ffcd246ef0a" title="Prints a message in a given foreground color.">colorPrint()</a> </dd>
 <dd>
-colorPrintBG() </dd></dl>
+<a class="el" href="rogueutil_8h.html#a11755ee245770a05d3c6f2181834b274" title="Prints a message given foreground and background colors.">colorPrintBG()</a> </dd></dl>
 
 </div>
 </div>

@@ -3,12 +3,11 @@ Rogueutil is a cross-platform C/C++ (Windows and *nix at least) utility for
 creating text-based user interfaces (TUI) and console-based games.
 
 # Quick Start
-Simply include `rogueutil.h` somewhere in your source code. It will automatically detect if
-you are using C or C++.
+Simply include `rogueutil.h` somewhere in your source code. It will automatically detect your platform
+and whether you are using C or C++.
 
 # Documentation
-Either read the source code for the comments or see the API reference located
-in docs/html/rogueutil8h.html
+Either read the source code for the comments or see the [API reference](https://sakhmatd.github.io/rogueutil/html/rogueutil_8h.html).
 
 # LICENSE
 Copyright 2019 Sergei Akhmatdinov
@@ -24,8 +23,17 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Contains parts from rlutil by Tapio Vierros licensed under WTFPLv2.
+Contains many parts from rlutil by Tapio Vierros licensed under WTFPLv2.
 
 # CREDITS
 Many thanks to Tapio Vierros ([@tapio](https://github.com/tapio)) for making the original
-rlutil and individual contributors submitting PRs to the project that I have merged into Rogueutil.
+rlutil and all of rlutil's individual contributors.
+
+If you worked on rlutil and want an individual acknowledgement, please let me know.
+
+# CONTRIBUTING
+Contributions are welcome no matter who you are and where you come from.
+
+When submitting PRs, please maintain the [coding style](https://suckless.org/coding_style/)
+used for the project. This project uses [Doxygen](http://doxygen.nl/) for documentation, when
+adding new methods, please document them.

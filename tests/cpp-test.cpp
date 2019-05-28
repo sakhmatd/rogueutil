@@ -1,16 +1,8 @@
 /**
- * File: test.cpp
- *
- * About: Description
- * This is a C++ example / test program for rlutil that can be
- * used for validating or showcasing the functionality.
- *
- * About: Copyright
  * (C) 2010 Tapio Vierros
  * (C) 2019 Sergei Akhmatdinov
  *
- * About: Licensing
- * See <License>
+ * Most of the code unchanged from RLUtil.
  */
 
 #include "../rogueutil.h"
@@ -19,17 +11,25 @@
 #include <cstdio>
 #include <ctime>
 
-#define waitkey rogueutil::anykey("Press any key to continue...\n")
+static inline void
+waitkey()
+{
+        rogueutil::anykey("Press any key to continue...\n");
+}
 
-char chargen() {
+char
+chargen()
+{
 	return rand() % (('~' - '!') + 1) + '!'; // I am really sorry for this
 }
 
-int main() {
+int
+main()
+{
 	rogueutil::saveDefaultColor();
 
 	std::cout << "Welcome to the Rogueutil test program." << std::endl;
-	waitkey;
+	waitkey();
 
 	std::cout << "\nTest 1: Colors" << std::endl;
 	for (int i = 0; i < 16; i++) {
@@ -38,7 +38,7 @@ int main() {
 	}
 	rogueutil::resetColor();
 	std::cout << std::endl << "You should see numbers 0-15 in different colors." << std::endl;
-	waitkey;
+	waitkey();
 
 	std::cout << "\nTest 2: Background colors\n";
 	for (int i = 0; i < 8; i++) {
@@ -49,22 +49,22 @@ int main() {
 	}
 	rogueutil::resetColor();
 	std::cout << "\nYou should see numbers 0-7 in different-colored backgrounds.\n";
-	waitkey;
+	waitkey();
 
 	rogueutil::cls();
 	std::cout << "Test 3: Clear screen" << std::endl;
 	std::cout << "The colors should now be gone." << std::endl;
-	waitkey;
+	waitkey();
 
 	std::cout << "\nTest 4: Cursor hiding" << std::endl;
 	rogueutil::hidecursor();
 	std::cout << "The cursor should now be invisible." << std::endl;
-	waitkey;
+	waitkey();
 
 	std::cout << "\nTest 5: Cursor showing" << std::endl;
 	rogueutil::showcursor();
 	std::cout << "The cursor should now be visible again." << std::endl;
-	waitkey;
+	waitkey();
 
 	rogueutil::cls();
 	std::cout << "Test 6: Cursor positioning" << std::endl;
@@ -73,7 +73,7 @@ int main() {
 	rogueutil::locate(8,8); std::cout << "(8,8)";
 	rogueutil::locate(-1,-10); std::cout << "(-1,-10)";
 	std::cout << std::endl << "You should see three coordinates in their specified locations." << std::endl;
-	waitkey;
+	waitkey();
 
 	// Test 7
 	{	int x = 7; int y = 7; unsigned int cnt = 0;
@@ -152,14 +152,14 @@ int main() {
 		std::cout << t << "s" << std::endl;
 		rogueutil::msleep(250);
 	}
-	waitkey;
+	waitkey();
 
 	rogueutil::cls();
 	std::cout << "Test 11: Terminal Dimensions" << std::endl;
 	std::cout << "You should see the size in character rows and columns of your terminal window." << std::endl;
 	std::cout << rogueutil::trows() << " Rows" << std::endl;
 	std::cout << rogueutil::tcols() << " Columns" << std::endl;
-	waitkey;
+	waitkey();
 
 	rogueutil::cls();
 	std::cout << "Test 12: Non-advancing character setting" << std::endl;
@@ -172,7 +172,7 @@ int main() {
 			rogueutil::msleep(75);
 		}
 	}
-	waitkey;
+	waitkey();
 
 	std::srand(std::time(0));
 	rogueutil::cls();
@@ -190,7 +190,7 @@ int main() {
 		}
 	}
 	std::cout << std::endl;
-	waitkey;
+	waitkey();
 
 	rogueutil::cls();
 	std::cout << "Test 14: Terminal window title" << std::endl;
@@ -200,12 +200,12 @@ int main() {
 		rogueutil::setConsoleTitle(title);
 		std::cout << "Your terminal window should now be named \"" << title << "\"." << std::endl;
 	}
-        waitkey;
+        waitkey();
 
         std::cout << "Test 15: Getting the username." << std::endl;
         std::cout << rogueutil::getUsername() << std::endl;
         std::cout << "You should see your username above." << std::endl;
-        waitkey;
+        waitkey();
 
 	std::cout << "All tests done. Bye!" << std::endl;
 	return 0;

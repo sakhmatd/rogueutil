@@ -15,6 +15,10 @@
  * limitations under the License.
  */
 
+/*
+ * Adopted from RLUtil's test.cpp.
+ */
+
 #include "../rogueutil.h"
 #include <stdio.h>
 #include <stdlib.h>

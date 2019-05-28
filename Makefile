@@ -13,5 +13,5 @@ example-c: rogueutil.h
 .PHONY: clean
 
 clean:
-	rm -f test example-c
+	rm -f cpp-test c-test c-example
 	rm -rf *.dSYM
