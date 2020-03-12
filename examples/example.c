@@ -30,10 +30,10 @@ void gen(int seed) {
 	for (j = 0; j < MAPSIZE; j++) {
 		for (i = 0; i < MAPSIZE; i++) {
 			if (i == 0 || i == MAPSIZE-1 || j == 0 || j == MAPSIZE-1 ||
-			  rand() % 10 == 0) lvl[i][j] = 1;
+			  rand() % 10 == 0) lvl[i][j] = WALL;
 			else if (rand() % 20 == 0) lvl[i][j] = COIN;
 			else if (rand() % 100 == 0) lvl[i][j] = TORCH;
-			else lvl[i][j] = 0;
+			else lvl[i][j] = FLOOR;
 		}
 	}
 	#define randcoord (1+rand()%(MAPSIZE-2))
