@@ -19,7 +19,7 @@
 #include <stdio.h>
 
 #ifndef min
-#define min(a,b) (((a)<(b))?(a):(b))
+#define min(a,b) (((a) < (b)) ? (a) : (b))
 #endif /* min */
 
 /* Tiles */
@@ -41,14 +41,15 @@ int lvl[MAPSIZE][MAPSIZE];
 
 /* Generates the dungeon map */
 void 
-gen(int seed) {
+gen(int seed) 
+{
 	srand(seed);
 	int i, j;
 
 	for (j = 0; j < MAPSIZE; j++) {
 		for (i = 0; i < MAPSIZE; i++) {
-			if (i == 0 || i == MAPSIZE-1 || j == 0 || j == MAPSIZE-1 ||
-			  rand() % 10 == 0) {
+			if (i == 0 || i == MAPSIZE - 1 || j == 0 ||
+					j == MAPSIZE - 1 || rand() % 10 == 0) {
 				lvl[i][j] = WALL;
 			} else if (rand() % 20 == 0) {
 				lvl[i][j] = COIN;
@@ -60,7 +61,7 @@ gen(int seed) {
 		}
 	}
 
-	#define randcoord (1+rand()%(MAPSIZE-2))
+	#define randcoord (1 + rand() % (MAPSIZE - 2))
 	x = randcoord;
 	y = randcoord;
 	lvl[randcoord][randcoord] = STAIRS_DOWN;
@@ -69,7 +70,8 @@ gen(int seed) {
 
 /* Draws the screen */
 void 
-draw(void) {
+draw(void) 
+{
 	cls();
 	locate(1, MAPSIZE + 1);
 
@@ -118,7 +120,8 @@ draw(void) {
 
 /* Main loop and input handling */
 int 
-main(void) {
+main(void) 
+{
 	hidecursor();
 	saveDefaultColor();
 
