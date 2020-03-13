@@ -1,6 +1,6 @@
 /**
  * (C) 2010 Tapio Vierros
- * (C) 2019 Sergei Akhmatdinov
+ * (C) 2020 Sergei Akhmatdinov
  *
  * Most of the code unchanged from RLUtil.
  */
