@@ -47,6 +47,7 @@
 	#include <string>
 	#include <sstream>
 	#include <cstdio> /* for getch() */
+	#include <cstdarg> /* for colorPrint() */
 
 	/* Namespace forward declarations */
 	namespace rogueutil
@@ -56,6 +57,7 @@
 #else
 	#include <stdio.h> /* for getch() / printf() */
 	#include <string.h> /* for strlen() */
+	#include <stdarg.h> /* for colorPrint() */
 
 	void locate(int x, int y); /* Forward declare for C to avoid warnings */
 #endif
@@ -777,7 +779,9 @@ anykey()
 	getch();
 }
 
-template <class T> void anykey(const T& msg)
+template <class T> 
+void 
+anykey(const T& msg)
 {
 	rutil_print(msg);
 #else
@@ -812,32 +816,51 @@ setConsoleTitle(RUTIL_STRING title)
 }
 
 /**
- * @brief Prints a message in a given foreground color.
- * @param msg Message to print.
- * @param color Foreground color to be used
+ * @brief Prints a message in a given color.
+ * @param fmt printf-style formatted string to print in C or a list of objects in C++
+ * @param color Foreground color to be used, use -1 to use the currently set foreground color
+ * @param bgcolor Background color to be used, use -1 to use the currently set background color
  * @see color_code
  */
-void
-colorPrint(RUTIL_STRING msg, color_code color)
-{
-        setColor(color);
-        rutil_print(msg);
+#ifdef __cplusplus
+void 
+colorPrint(color_code, color_code) {
+
+	resetColor();
 }
 
-/**
- * @brief Prints a message given foreground and background colors.
- * @param msg Message to print.
- * @param color Foreground color to be used
- * @param bgcolor Background color to be used
- * @see color_code
- */
-void
-colorPrintBG(RUTIL_STRING msg, color_code bgcolor, color_code color)
+template <typename T, typename... F>
+void 
+colorPrint(color_code color, color_code bgcolor, T arg, F... fmt)
 {
-        setColor(color);
-        setBackgroundColor(bgcolor);
-        rutil_print(msg);
+	if (color >= 0)
+		setColor(color);
+
+	if (bgcolor >= 0)
+		setBackgroundColor(bgcolor);
+
+	std::cout << arg << " "; /* Let me know if I should remove the space */
+	colorPrint(color, fmt...);
 }
+#else
+void
+colorPrint(color_code color, color_code bgcolor, const char *fmt, ...)
+{
+	va_list args;
+	va_start(args, fmt);
+
+	if (color >= 0)
+        	setColor(color);
+
+	if (bgcolor >= 0)
+		setBackgroundColor(bgcolor);
+
+        vprintf(fmt, args);
+	va_end(args);
+
+	resetColor();
+}
+#endif /* __cplusplus */
 
 /**
  * @brief Returns the username of the user running the program.

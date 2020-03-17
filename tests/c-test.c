@@ -78,7 +78,7 @@ main(void)
 	for (i = 0; i < 8; i++) {
 		setBackgroundColor(i);
 		printf("%d", i);
-		setBackgroundColor(0);
+		setBackgroundColor(BLACK);
 		printf(" ");
 	}
 

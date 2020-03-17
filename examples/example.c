@@ -31,6 +31,8 @@
 
 #define MAPSIZE 15
 
+#define NOCOLOR -1
+
 void gen(int seed);
 void draw(void);
 
@@ -72,17 +74,13 @@ gen(int seed)
 void 
 draw(void) 
 {
-	cls();
+	cls()
+		;
 	locate(1, MAPSIZE + 1);
-
-	setColor(YELLOW);
-	printf("Coins: %d\n", coins);
-	setColor(RED);
-	printf("Torch: %d\n", torch);
-	setColor(MAGENTA);
-	printf("Moves: %d\n", moves);
-	setColor(GREEN);
-	printf("Level: %d\n", level);
+	colorPrint(YELLOW, NOCOLOR, "Coins: %d\n", coins);
+	colorPrint(RED, NOCOLOR, "Torch: %d\n", torch);
+	colorPrint(MAGENTA, NOCOLOR, "Moves: %d\n", moves);
+	colorPrint(GREEN, NOCOLOR, "Level: %d\n", level);
 	locate(1, 1);
 	
 	int i, j;
@@ -92,20 +90,15 @@ draw(void)
 			else if (abs(x - i) + abs(y - j) > min(10, torch / 2)) {
 				printf(" ");
 			} else if (lvl[i][j] == 0) {
-				setColor(BLUE);
-				printf(".");
+				colorPrint(BLUE, NOCOLOR, ".");
 			} else if (lvl[i][j] & WALL) {
-				setColor(CYAN);
-				printf("#"); 
+				colorPrint(CYAN, NOCOLOR, "#"); 
 			} else if (lvl[i][j] & COIN) { 
-				setColor(YELLOW);
-				printf("o"); 
+				colorPrint(YELLOW, NOCOLOR, "o"); 
 			} else if (lvl[i][j] & STAIRS_DOWN) {
-				setColor(GREEN);
-				printf("<");
+				colorPrint(GREEN, NOCOLOR, "<");
 			} else if (lvl[i][j] & TORCH) {
-				setColor(RED);
-				printf("f");
+				colorPrint(RED, NOCOLOR, "f");
 			}
 		}
 
@@ -113,8 +106,7 @@ draw(void)
 	}
 
 	locate(x + 1, y + 1);
-	setColor(WHITE);
-	printf("@");
+	colorPrint(WHITE, NOCOLOR, "@");
 	fflush(stdout);
 }
 
@@ -127,8 +119,8 @@ main(void)
 
 	gen(level);
 
-	setColor(GREEN);
-	printf("Welcome! Use WASD to move, ESC to quit.\n");
+	colorPrint(GREEN, NOCOLOR, "Welcome! Use WASD to move, ESC to quit.\n");
+
 	setColor(YELLOW);
 	anykey("Hit any key to start.\n");
 	draw();
@@ -175,8 +167,9 @@ main(void)
 	}
 
 	cls();
-        setColor(RED);
-        anykey("You have been eaten by a grue.");
+        colorPrint(RED, NOCOLOR, "You have been eaten by a grue.\n");
+	colorPrint(YELLOW, NOCOLOR, "Coins: %d\n", coins);
+	anykey(NULL);
 	resetColor();
 	showcursor();
 
