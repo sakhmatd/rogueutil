@@ -1,4 +1,6 @@
 # Rogueutil
+[![Mentioned in Awesome C](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/kozross/awesome-c)
+
 Rogueutil is a cross-platform C/C++ (Windows and *nix at least) utility for
 creating text-based user interfaces (TUI) and console-based games.
 
