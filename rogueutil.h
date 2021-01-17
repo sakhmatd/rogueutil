@@ -76,6 +76,7 @@
 	#include <sys/ioctl.h> /* for getkey() */
 	#include <sys/types.h> /* for kbhit() */
 	#include <sys/time.h> /* for kbhit() */
+	#include <pwd.h> /* for getpwduid(), getuid() */
 #endif
 
 /* Functions covered by Window's conio.h */
@@ -876,7 +877,16 @@ getUsername(void)
                 return ret;
         return NULL;
 #else /* _WIN32 */
-        return getlogin();
+#ifdef __linux__
+        struct passwd *pw = getpwuid(getuid());
+				if (pw) {
+					return pw->pw_name;
+				} else {
+					return NULL;
+				}
+#else
+				return getlogin():
+#endif
 #endif
 }
 
