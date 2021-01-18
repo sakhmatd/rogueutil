@@ -71,12 +71,12 @@
 	#define kbhit _kbhit
 #else
 	#include <termios.h> /* for getch() and kbhit() */
-	#include <unistd.h> /* for getch() and kbhit() */
+	#include <unistd.h> /* for getch(), kbhit() and getuid() */
 	#include <time.h>   /* for nanosleep() */
 	#include <sys/ioctl.h> /* for getkey() */
 	#include <sys/types.h> /* for kbhit() */
 	#include <sys/time.h> /* for kbhit() */
-	#include <pwd.h> /* for getpwduid(), getuid() */
+	#include <pwd.h> /* for getpwuid() */
 #endif
 
 /* Functions covered by Window's conio.h */
@@ -876,17 +876,13 @@ getUsername(void)
         if (GetUserNameA(ret, &len))
                 return ret;
         return NULL;
-#else /* _WIN32 */
-#ifdef __linux__
-        struct passwd *pw = getpwuid(getuid());
-				if (pw) {
-					return pw->pw_name;
-				} else {
-					return NULL;
-				}
-#else
-				return getlogin():
-#endif
+#else /* _WIN32 */	
+	struct passwd *pw = getpwuid(getuid());
+	if (pw) {
+		return pw->pw_name;
+	} else {
+		return NULL;
+	}
 #endif
 }
 
