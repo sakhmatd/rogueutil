@@ -12,7 +12,7 @@ and whether you are using C or C++.
 Either read the source code for the comments or see the [API reference](https://sakhmatd.github.io/rogueutil/html/rogueutil_8h.html).
 
 # LICENSE
-Copyright 2020 Sergei Akhmatdinov
+Copyright 2021 Sergei Akhmatdinov
 
 Licensed under the Apache License, Version 2.0 (the "License");
 You may obtain a copy of the License at
