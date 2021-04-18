@@ -841,7 +841,7 @@ colorPrint(color_code color, color_code bgcolor, T arg, F... fmt)
 		setBackgroundColor(bgcolor);
 
 	std::cout << arg << " "; /* Let me know if I should remove the space */
-	colorPrint(color, fmt...);
+	colorPrint(color, bgcolor, fmt...);
 }
 #else
 void
