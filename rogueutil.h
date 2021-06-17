@@ -266,7 +266,7 @@ typedef enum key_code {
 	KEY_NUMPAD6 = 132,
 	KEY_NUMPAD7 = 133,
 	KEY_NUMPAD8 = 134,
-	KEY_NUMPAD9 = 135,
+	KEY_NUMPAD9 = 135
 } key_code;
 
 /**
