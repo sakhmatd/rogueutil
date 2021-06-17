@@ -42,8 +42,8 @@ int coins = 0, moves = 0, torch = 30, level = 1;
 int lvl[MAPSIZE][MAPSIZE];
 
 /* Generates the dungeon map */
-void 
-gen(int seed) 
+void
+gen(int seed)
 {
 	srand(seed);
 	int i, j;
@@ -71,8 +71,8 @@ gen(int seed)
 }
 
 /* Draws the screen */
-void 
-draw(void) 
+void
+draw(void)
 {
 	cls()
 		;
@@ -92,9 +92,9 @@ draw(void)
 			} else if (lvl[i][j] == 0) {
 				colorPrint(BLUE, NOCOLOR, ".");
 			} else if (lvl[i][j] & WALL) {
-				colorPrint(CYAN, NOCOLOR, "#"); 
-			} else if (lvl[i][j] & COIN) { 
-				colorPrint(YELLOW, NOCOLOR, "o"); 
+				colorPrint(CYAN, NOCOLOR, "#");
+			} else if (lvl[i][j] & COIN) {
+				colorPrint(YELLOW, NOCOLOR, "o");
 			} else if (lvl[i][j] & STAIRS_DOWN) {
 				colorPrint(GREEN, NOCOLOR, "<");
 			} else if (lvl[i][j] & TORCH) {
@@ -111,8 +111,8 @@ draw(void)
 }
 
 /* Main loop and input handling */
-int 
-main(void) 
+int
+main(void)
 {
 	hidecursor();
 	saveDefaultColor();
@@ -131,14 +131,14 @@ main(void)
 
 			int oldx = x;
 			int oldy = y;
-			if (k == 'a') { 
-				--x; ++moves; 
+			if (k == 'a') {
+				--x; ++moves;
 			} else if (k == 'd') {
-				++x; ++moves; 
+				++x; ++moves;
 			} else if (k == 'w') {
-				--y; ++moves; 
+				--y; ++moves;
 			} else if (k == 's') {
-				++y; ++moves; 
+				++y; ++moves;
 			} else if (k == KEY_ESCAPE) {
 				break;
 			}
@@ -146,13 +146,13 @@ main(void)
 			/* Collisions */
 			if (lvl[x][y] & WALL) {
 				x = oldx;
-				y = oldy; 
+				y = oldy;
 			} else if (lvl[x][y] & COIN) {
 				coins++;
-				lvl[x][y] ^= COIN; 
+				lvl[x][y] ^= COIN;
 			} else if (lvl[x][y] & TORCH) {
 				torch += 20;
-				lvl[x][y] ^= TORCH; 
+				lvl[x][y] ^= TORCH;
 			} else if (lvl[x][y] & STAIRS_DOWN) {
 				gen(++level);
 			}

@@ -780,8 +780,8 @@ anykey()
 	getch();
 }
 
-template <class T> 
-void 
+template <class T>
+void
 anykey(const T& msg)
 {
 	rutil_print(msg);
@@ -824,14 +824,14 @@ setConsoleTitle(RUTIL_STRING title)
  * @see color_code
  */
 #ifdef __cplusplus
-void 
+void
 colorPrint(color_code, color_code) {
 
 	resetColor();
 }
 
 template <typename T, typename... F>
-void 
+void
 colorPrint(color_code color, color_code bgcolor, T arg, F... fmt)
 {
 	if (color >= 0)
