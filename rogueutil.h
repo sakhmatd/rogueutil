@@ -110,6 +110,7 @@ int
 kbhit(void)
 {
 	static struct termios oldt, newt;
+	struct timeval tv;
 	int cnt = 0;
 	tcgetattr(STDIN_FILENO, &oldt);
 	newt = oldt;
@@ -120,7 +121,6 @@ kbhit(void)
 	newt.c_cc[VTIME] = 1; /* minimum characters to wait for */
 	tcsetattr(STDIN_FILENO, TCSANOW, &newt);
 	ioctl(0, FIONREAD, &cnt); /* Read count */
-	struct timeval tv;
 	tv.tv_sec  = 0;
 	tv.tv_usec = 100;
 	select(STDIN_FILENO+1, NULL, NULL, NULL, &tv); /* A small time delay */
@@ -266,7 +266,7 @@ typedef enum key_code {
 	KEY_NUMPAD6 = 132,
 	KEY_NUMPAD7 = 133,
 	KEY_NUMPAD8 = 134,
-	KEY_NUMPAD9 = 135,
+	KEY_NUMPAD9 = 135
 } key_code;
 
 /**
@@ -613,6 +613,8 @@ setString(const RUTIL_STRING & str_)
 void
 setString(RUTIL_STRING str)
 {
+	char buf[3 + 20 + 1]; /* 20 = max length of 64-bit
+                                 * unsigned int when printed as dec */
 	unsigned int len = (unsigned int)strlen(str);
 #endif /* __cplusplus */
 #if defined(_WIN32) && !defined(RUTIL_USE_ANSI)
@@ -639,8 +641,6 @@ setString(RUTIL_STRING str)
         ss << "\033[" << len << 'D';
 	rutil_print(ss.str());
 #else
-	char buf[3 + 20 + 1]; /* 20 = max length of 64-bit
-                                 * unsigned int when printed as dec */
 	sprintf(buf, "\033[%uD", len);
 	rutil_print(buf);
 #endif /* __cplusplus */
@@ -780,8 +780,8 @@ anykey()
 	getch();
 }
 
-template <class T> 
-void 
+template <class T>
+void
 anykey(const T& msg)
 {
 	rutil_print(msg);
@@ -824,14 +824,14 @@ setConsoleTitle(RUTIL_STRING title)
  * @see color_code
  */
 #ifdef __cplusplus
-void 
+void
 colorPrint(color_code, color_code) {
 
 	resetColor();
 }
 
 template <typename T, typename... F>
-void 
+void
 colorPrint(color_code color, color_code bgcolor, T arg, F... fmt)
 {
 	if (color >= 0)
